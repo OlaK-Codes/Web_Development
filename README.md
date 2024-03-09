@@ -7,3 +7,6 @@ This repository contains various web development projects categorized into diffe
 - **Bot Development**: Projects related to the development of bots for web platforms.
 
 Feel free to explore each directory to learn more about the projects and their respective implementations.
+
+# Tags
+Python, Django, BeautifulSoup, API, Scrapy Selenium, Smtplib, HTML, CSS, Sass, Bootstrap 
