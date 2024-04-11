@@ -1,2 +1,0 @@
-
-password='INSERT_YOUR_PASSWORD'

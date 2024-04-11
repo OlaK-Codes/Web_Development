@@ -1,1 +1,0 @@
-Projects in this directory involve web scraping, the process of extracting data from websites. Python libraries like BeautifulSoup or Scrapy may be used for these projects.
