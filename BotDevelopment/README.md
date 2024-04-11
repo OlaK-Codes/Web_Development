@@ -1,0 +1,1 @@
+This directory houses projects related to the development of bots for web platforms. Bots may be created using languages like Python and frameworks like Selenium or Smtplib.
