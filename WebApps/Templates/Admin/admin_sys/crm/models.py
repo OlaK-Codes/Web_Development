@@ -1,9 +1,17 @@
 from django.db import models
 
-# Create your models here.
+# Create your models (tables) here.
 class Membership (models.Model):
+     # customise name of categories in admin
+     class Meta:
+          verbose_name_plural = "Gym Members"
+          # implement ordering by column value
+          ordering = ['unique_code']
+
+   # Create Table fields
      name = models.CharField(max_length =500)
-     #constant 
+     
+     #categor. value field 
      MEMBERSHIP_CHOICES = (
         ('s','Standart'),
         ('p','Premium'),
@@ -11,5 +19,18 @@ class Membership (models.Model):
      )
 
      membership_plan = models.CharField(max_length =2, choices = MEMBERSHIP_CHOICES)
+     
+     # tick field
      membership_active = models.BooleanField(default=True)
+     
      unique_code = models.CharField(max_length =250)
+
+     
+     # displays values of name fields via admin
+     """def _str_(self):
+      return self.name + ' - record'"""
+
+    
+
+
+     

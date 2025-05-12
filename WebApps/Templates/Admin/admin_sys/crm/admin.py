@@ -16,12 +16,67 @@ admin.site.register(Membership, MembershipAdmin)"""
 #3rd Method 
 @admin.register(Membership)
 class MembershipAdmin(admin.ModelAdmin):
-    pass
+    # Implement Search function
+    search_fields = ('name','unique_code',)
+
+    #make  all table fields visible for admin
+    #pass
+
+    #change admin options eg swich off unique code field
+    # Method1
+    """fields = (
+        'name',
+        'membership_plan',
+        'membership_active',
+        #'unique_code',
+    )"""
+    #Method 2
+    """exclude = (
+        'unique_code',
+    )"""
+
+    # place some fields in one line
+    """fields = (
+        ('name','membership_plan'),
+        'membership_active',  
+    )"""
+    
+    # make values from db fields visible via admin
+    list_display = ['name','membership_plan','membership_active', 'unique_code']
+    # Add filters in the particulat field
+    list_filter = ['membership_plan']
+    #make objects clickable in the admin 
+    list_display_links = ['name', 'unique_code']
+    #make objects editable via admin (!!excl all linked columns!! )
+    list_editable = ('membership_plan',)
+
+    # Add additional functions into Action list eg. set membership active 
+    actions = ('set_membership_to_active',)
+    def set_membership_to_active(self, request,queryset):
+        queryset.update(membership_active = True)
+         #add message to functions
+        self.message_user(request,'membership(s) activated')
+    set_membership_to_active.short_description = 'Mark selected membership as active'
 
 #If I need to make any model invisible
 from django.contrib.auth.models import User,Group
 admin.site.unregister(User)
 admin.site.unregister(Group)
+
+#Change admin titles
+admin.site.site_header = "Elevate administration"
+
+#Change index titles
+admin.site.index_title = "Admin"
+
+#Change website titles
+admin.site.site_title = "My site"
+
+
+
+
+
+
 
 
 
