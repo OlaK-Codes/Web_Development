@@ -933,7 +933,7 @@ a.deletelink:focus, a.deletelink:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px 40px;
-    #background: var(--header-bg);
+    /*background: var(--header-bg);*/
     background: #21c361;
     color: var(--header-color);
 }
