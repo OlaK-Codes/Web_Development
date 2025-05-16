@@ -3,6 +3,9 @@ from django.contrib import admin
 # Register your models here.
 from . models import Course, Module
 
+class AdminLoginArea(admin.AdminSite):
+  login_template = 'admin/login.html'
+
 # make visible inherited categories
 """class InlineLecture(admin.StackedInline):
     model = Module
@@ -33,7 +36,32 @@ admin.site.register(Course, CourseAdmin)
 
 class ModuleAdmin (admin.ModelAdmin):
      #pass
+     #Method 1- if I want to hide some field and see any particular fields
+     #fields = ('module_name', 'slug',)
+     
+     #Method 2 using tuples - if I want to hide some field and see any particular fields
+     #Additionaly it lets us to add discription (optional)
+     fieldsets = (
+      #(None, {
+       ('Module', {
+
+         'fields': ('module_name','slug',),
+         #add description 
+         'description':'Module Details',
+
+      }),
+
+      ('Course', {
+
+         'fields': ('course',),# Do not use slug twice!
+         #add description 
+         'description':'Course Details',
+
+      }),
+
+    )
      # connect slug with admin
      prepopulated_fields = {'slug':('module_name',)}
+
 admin.site.register(Module, ModuleAdmin)
 
