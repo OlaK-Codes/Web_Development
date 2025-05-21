@@ -57,10 +57,32 @@ class MembershipAdmin(admin.ModelAdmin):
          #add message to functions
         self.message_user(request,'membership(s) activated')
     set_membership_to_active.short_description = 'Mark selected membership as active'
+  
+  #=====NB! I CAN ADD PERMISSION VIA ADMIN WITHOUT CODDING TOO  ============
+    #mannually change permission in admin
+    def has_add_permission(self,request):
+        # if i want manually remove any functionality from admin profile
+        #return False
+        return True
+    
+    def has_change_permission(self,request,obj=None):
+        #return False
+        return True
+
+    def has_delete_permission(self,request,obj=None):
+        #return False
+        #return True
+        if obj !=None and request.POST.get('actiion') == 'delete_selected':
+            messages.add_message(request,messages.ERROR,(
+                "Are you sure you want to delete this object?"
+            )
+            )
+        return True
+
 
 #If I need to make any model invisible
 from django.contrib.auth.models import User,Group
-admin.site.unregister(User)
+#admin.site.unregister(User)
 admin.site.unregister(Group)
 
 #Change admin titles
@@ -71,6 +93,9 @@ admin.site.index_title = "Admin"
 
 #Change website titles
 admin.site.site_title = "My site"
+
+
+
 
 
 

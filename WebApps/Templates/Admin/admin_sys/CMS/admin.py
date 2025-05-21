@@ -2,10 +2,17 @@ from django.contrib import admin
 
 # Register your models here.
 from . models import Course, Module
+#create own admn for cms
+class CMSAdminSite(admin.AdminSite):
+    site_header = "CMS ADMIN"
+cms_site = CMSAdminSite(name = 'cms-site')
+cms_site.register(Course)
+cms_site.register(Module)
 
 class AdminLoginArea(admin.AdminSite):
   login_template = 'admin/login.html'
 
+#share  admn for cms with DBMS
 # make visible inherited categories
 """class InlineLecture(admin.StackedInline):
     model = Module

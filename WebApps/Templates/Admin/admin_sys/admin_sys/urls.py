@@ -18,7 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django .conf import settings
+#to create own admin for cms
+from CMS.admin import cms_site
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #to create own url for admin in cms
+    path('cms-admin/', cms_site.urls),
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
