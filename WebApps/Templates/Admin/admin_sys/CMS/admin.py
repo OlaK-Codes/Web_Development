@@ -9,8 +9,8 @@ cms_site = CMSAdminSite(name = 'cms-site')
 cms_site.register(Course)
 cms_site.register(Module)
 
-class AdminLoginArea(admin.AdminSite):
-  login_template = 'admin/login.html'
+"""class AdminLoginArea(admin.AdminSite):
+  login_template = 'admin/login.html'"""
 
 #share  admn for cms with DBMS
 # make visible inherited categories

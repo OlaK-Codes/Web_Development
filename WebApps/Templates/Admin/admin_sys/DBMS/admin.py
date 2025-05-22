@@ -2,7 +2,13 @@ from django.contrib import admin
 
 # Register your models here.
 from . models import Membership
-
+#captcha
+from django.contrib.auth.models import Group
+# Ensure Group is registered (this avoids the NotRegistered error)
+try:
+    admin.site.register(Group)
+except admin.sites.AlreadyRegistered:
+    pass
 
 #1st Method
 #admin.site.register(Membership)
