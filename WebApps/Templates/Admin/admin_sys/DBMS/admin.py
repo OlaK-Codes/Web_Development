@@ -1,9 +1,13 @@
 from django.contrib import admin
 
 # Register your models here.
-from . models import Membership
+from . models import Membership, Client
 #captcha
 from django.contrib.auth.models import Group
+#csv
+import data_wizard
+data_wizard.register(Client)
+admin.site.register(Client)
 # Ensure Group is registered (this avoids the NotRegistered error)
 try:
     admin.site.register(Group)

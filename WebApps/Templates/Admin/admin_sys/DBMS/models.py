@@ -24,11 +24,17 @@ class Membership (models.Model):
      membership_active = models.BooleanField(default=True)
      
      unique_code = models.CharField(max_length =250)
+   
+class Client (models.Model):
+
+    first_name = models.CharField(max_length =50)
+    last_name = models.CharField(max_length =100)
+    job_title = models.CharField(max_length =150)
 
      
      # displays values of name fields via admin
-     """def _str_(self):
-      return self.name + ' - record'"""
+     #def _str_(self):
+     #return self.name + ' - record'
 
     
 

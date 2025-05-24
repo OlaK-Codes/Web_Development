@@ -31,7 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'multi_captcha_admin',
+    'data_wizard',
+    'data_wizard.sources',
+    'jazzmin',
+    #'multi_captcha_admin',
     'DBMS',
     'CMS',
     

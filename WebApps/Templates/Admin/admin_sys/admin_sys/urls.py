@@ -28,5 +28,8 @@ urlpatterns = [
 
     #captha
     path('captcha/', include('captcha.urls')),
+
+    # csv file data into admin db
+    path('datawizard/', include('data_wizard.urls')),
     
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
