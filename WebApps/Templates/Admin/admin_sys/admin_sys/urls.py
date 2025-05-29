@@ -22,7 +22,7 @@ from django .conf import settings
 from CMS.admin import cms_site
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('my-unique-admin', admin.site.urls),
     #to create own url for admin in cms
     path('cms-admin/', cms_site.urls),
 
