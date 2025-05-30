@@ -4,6 +4,16 @@ from django.contrib import admin
 from . models import Membership, Client
 #captcha
 from django.contrib.auth.models import Group
+
+#for user account and profile auth
+from DBMS.models import User, Profile
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ["user"]
+admin.site.register(User)
+admin.site.register(Profile, ProfileAdmin)
+
+
 #csv
 import data_wizard
 data_wizard.register(Client)

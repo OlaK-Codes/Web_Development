@@ -27,7 +27,7 @@ urlpatterns = [
     path('cms-admin/', cms_site.urls),
 
     #captha
-    path('captcha/', include('captcha.urls')),
+    #path('captcha/', include('captcha.urls')),
 
     # csv file data into admin db
     path('datawizard/', include('data_wizard.urls')),
