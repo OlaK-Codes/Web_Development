@@ -1,6 +1,8 @@
 from django.db import models
 #create user account for login
 from django.contrib.auth.models import AbstractUser
+# profile via abstractuser autofill
+from django.db.models.signals import post_save
 
 #CREATE USER ACCOUNT MODEL FOR REGISTRATION   
 class User (AbstractUser):
@@ -27,7 +29,18 @@ class Profile (models.Model):
 
      def __str__(self):
         return self.user.username 
-     
+
+#AUTOFILL PROFILE VIA USER
+def create_user_profile(sender, instance,created,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+def save_user_profile(sender, instance,**kwargs):
+    instance.profile.save()
+post_save.connect(create_user_profile, sender=User)
+post_save.connect(save_user_profile,sender =User)
+
+
 # Create your models (tables) here.
 class Membership (models.Model):
      # customise name of categories in admin

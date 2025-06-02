@@ -14,7 +14,7 @@ admin.site.register(User)
 admin.site.register(Profile, ProfileAdmin)
 
 
-#csv
+#import csv
 import data_wizard
 data_wizard.register(Client)
 admin.site.register(Client)
