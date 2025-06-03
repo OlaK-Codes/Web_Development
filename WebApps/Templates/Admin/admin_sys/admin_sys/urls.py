@@ -21,6 +21,8 @@ from django .conf import settings
 #to create own admin for cms
 from CMS.admin import cms_site
 
+
+
 urlpatterns = [
     path('my-unique-admin/', admin.site.urls),
     #to create own url for admin in cms
@@ -31,5 +33,7 @@ urlpatterns = [
 
     # csv file data into admin db
     path('datawizard/', include('data_wizard.urls')),
+    # login token serialisation
+    path("api/v1/", include("api.urls"))
     
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
