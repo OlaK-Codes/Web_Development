@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Post model here.
 class Post(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField()
@@ -11,6 +11,7 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created']
 
+# Vote model here
 class Vote(models.Model):
     voter = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
