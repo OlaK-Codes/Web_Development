@@ -31,8 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #My Apps
     'app',
+    
+    #API
     'rest_framework',
+    "rest_framework.authtoken",
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +45,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        #Use TokenAuthentication for real APIs 
+        'rest_framework.authentication.TokenAuthentication',
+        #keep SessionAuthentication only if you're also interacting with the API via the browser (dev/testing).
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

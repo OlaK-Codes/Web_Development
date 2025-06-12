@@ -1,10 +1,22 @@
 from django.shortcuts import render
 from rest_framework import generics,permissions, mixins, status
 from rest_framework.exceptions import ValidationError
-from .models import Post, Vote
+from .models import Post, Vote, User
 from .serializers import PostSerializer, VoteSerializer
 from rest_framework.response import Response
 
+# Token Implementation
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+#every user to have an automatically generated Token
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.get_or_create(user=instance)
+ 
 # Api views here to read (get method) the post only.
 """class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
@@ -55,7 +67,7 @@ class VoteCreate(generics.CreateAPIView,mixins.DestroyModelMixin):
         return Vote.objects.filter(voter=user,post=post)
     
     def perform_create (self,serializer):
-        #serializer.save (voter=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
+        #serializer.save(voter=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
         
         # function control that voting for particular user and post happens only once!
         if self.get_queryset().exists():
