@@ -24,6 +24,7 @@ from CMS.admin import cms_site
 
 
 urlpatterns = [
+    #Admin Auth
     path('my-unique-admin/', admin.site.urls),
     #to create own url for admin in cms
     path('cms-admin/', cms_site.urls),
@@ -33,7 +34,8 @@ urlpatterns = [
 
     # csv file data into admin db
     path('datawizard/', include('data_wizard.urls')),
-    # login token serialisation
+    
+    # API - login token serialisation
     path("api/v1/", include("api.urls"))
     
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
