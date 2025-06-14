@@ -11,4 +11,6 @@ urlpatterns = [
      path("user/token/refresh/", TokenRefreshView.as_view()),
      #CREATE NWE USER VIA API FORM (registration form url)
      path("user/register/", api_views.RegisterView.as_view()),
-]
+     #ONE TIME PASSOWRD AUTO GENERATION AND RESET 
+     path ("user/password-reset/<email>/", api_views.PasswordResetEmailVerifyAPIView.as_view())
+]   

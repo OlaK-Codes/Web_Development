@@ -8,8 +8,11 @@ from django.db.models.signals import post_save
 class User (AbstractUser):
     username = models.CharField(unique=True, max_length=100)
     email = models.EmailField(unique=True)
-    #insert additional field in User table for password fields in serializer 
+    #insert additional field one time password in User table for password fields in serializer 
     otp = models.CharField(max_length=100, null=True, blank=True)
+    #insert additional field one time password in User table for refresh token 
+    refresh_token = models.CharField(max_length=100, null=True, blank=True)
+
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"] 

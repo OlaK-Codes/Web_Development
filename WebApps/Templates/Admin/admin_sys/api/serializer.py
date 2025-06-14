@@ -22,7 +22,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 # CREATE REGISTRATION FORM FOR NEW USER
 class RegisterSerializer(serializers.ModelSerializer):
-     # create additional fields via serializer
+     # create additional one time password fields via serializer
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
     class Meta:
@@ -44,13 +44,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
     
-
-"""class UserSerializer(serializers.ModelSerializer):
+#ONE TIME PASSOWRD AUTO GENERATION AND RESET TOKEN VIA API INTERFACE
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
-class ProfileSerializer(serializers.ModelSerializer):
+"""class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile"""
        # fields = '__all__'

@@ -16,7 +16,7 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     search_fields = ('email', 'username')
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'password')}),
+        (None, {'fields': ('email', 'username', 'password','otp','refresh_token')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
