@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
+from environs import Env
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,23 +49,36 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'captcha',
+    #'captcha',
 
     # Third Party Apps
     'rest_framework',# Django REST Framework
     'rest_framework_simplejwt.token_blacklist',# JWT Token Blacklist app
     'corsheaders', # CORS headers middleware
-    
+    'anymail',# send emails
     
 ]
 
 #USER ACCOUNT AND PROFILE AUTH
 AUTH_USER_MODEL = 'DBMS.User'
 
+#.ENV VARIABLE KEYS IMPLEMENTATION
+MAILGUN_API_KEY = env("MAILGUN_API_KEY")
+#MAIL_RESEND_TOKEN = env("MAIL_RESEND_TOKEN")
+MAILGUN_SENDER_DOMAIN = env("MAILGUN_SENDER_DOMAIN")
 
-MULTI_CAPTCHA_ADMIN = {
-    'engine':'simple-captcha',
+ANYMAIL = {
+    "MAILGUN_API_KEY":env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN":env("MAILGUN_SENDER_DOMAIN")
 }
+
+FROM_EMAIL = env("FROM_EMAIL")
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+
+#CAPTCHA
+"""MULTI_CAPTCHA_ADMIN = {
+    'engine':'simple-captcha',
+}"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
