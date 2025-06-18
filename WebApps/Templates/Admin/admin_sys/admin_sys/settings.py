@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',# JWT Token Blacklist app
     'corsheaders', # CORS headers middleware
     'anymail',# send emails
+    'drf_yasg',# generate docs
     
 ]
 
